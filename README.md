@@ -1,2 +1,5 @@
 # SQLite_v1
-SQLite x Android Studio
+## Notes
+```
+This trial version includes connecting Android Studio to SQLite
+```
