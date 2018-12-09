@@ -3,4 +3,8 @@
     <string name="app_name">TxTTyper</string>
     <string name="start">Start</string>
     <string name="leaderboards">Leaderboards</string>
+    <string name="difficulty">Set Difficulty:</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
 </resources>

@@ -9,11 +9,11 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/txtStart2"
+        android:id="@+id/txtLeaderboards"
         android:layout_width="151dp"
         android:layout_height="54dp"
         android:layout_marginStart="116dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="24dp"
         android:text="@string/leaderboards"
         android:textAlignment="center"
         android:textColor="@android:color/background_dark"
@@ -27,7 +27,7 @@
         android:layout_width="151dp"
         android:layout_height="54dp"
         android:layout_marginStart="116dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="48dp"
         android:text="@string/start"
         android:textAlignment="center"
         android:textColor="@android:color/background_dark"
@@ -46,15 +46,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="147dp"
-        android:layout_marginTop="23dp"
-        android:text="@string/start"
-        android:textAlignment="center"
-        android:textStyle="italic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtStart2" />
 </android.support.constraint.ConstraintLayout>
