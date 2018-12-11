@@ -1,5 +1,6 @@
 package com.example.lanceviaje.sqlite_v1;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -41,12 +42,25 @@ public class MainActivity extends AppCompatActivity {
         txtStart = findViewById(R.id.txtStart);
         txtLeaderboards = findViewById(R.id.txtLeaderboards);
 
+        txtStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), DifficultyActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        txtLeaderboards.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), LeaderboardsActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
-    private void setDifficulty(View v){
 
-        
-
-    }
 
 }
