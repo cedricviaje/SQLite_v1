@@ -2,22 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#69bff0"
-    android:gravity="center_vertical|center_horizontal">
+    android:background="#6bb9f0"
+    android:gravity="center_vertical">
 
     <TextView
         android:id="@+id/txtName"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:textAlignment="textStart"
-        android:textSize="22sp" />
+        android:gravity="center_vertical|fill_horizontal"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textAlignment="center" />
+        android:textAlignment="textStart"
+        android:textSize="24sp" />
 
 </LinearLayout>

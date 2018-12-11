@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
@@ -75,8 +74,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     // Getting All Shops
-    public List<Player> getAllData() {
-        List<Player> players = new ArrayList<Player>();
+    public ArrayList<Player> getAllData() {
+        ArrayList<Player> players = new ArrayList<Player>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + TABLE_PLAYERS;
 
@@ -100,14 +99,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     // Getting shops Count
-    public int getShopsCount() {
+    public int getSizeEntries() {
+        int count = 0;
         String countQuery = "SELECT  * FROM " + TABLE_PLAYERS;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
         cursor.close();
 
-        // return count
-        return cursor.getCount();
+        if(cursor != null && !cursor.isClosed()){
+            count = cursor.getCount();
+            cursor.close();
+        }
+        return count;
     }
 
     // Updating a shop
