@@ -7,24 +7,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainGame extends AppCompatActivity {
 
-    private String difficulty;
+/*    private String difficulty;
     private TextView txtSample;
     private TextView status;
     private EditText input;
 
     private long time;
     private long startTime;
-    private long endTime;
+    private long endTime;*/
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.maingame);
+  /*      setContentView(R.layout.maingame);
 
         Intent intent = getIntent();
         difficulty = intent.getStringExtra("difficulty");
@@ -81,7 +82,12 @@ public class MainGame extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 
             }
-        });
+        });*/
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(new GameView(this));
+
+
 
 
     }
