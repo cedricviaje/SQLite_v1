@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -15,14 +16,18 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class GameView extends SurfaceView {
+    //Core
+    private MainGame mainGame;
 
     //Game components
     private ArrayList<NumKey> keypad;
     private ArrayList<Word> words;
+    private ArrayList<Bitmap> userWordDisp;
     private int score;
     private boolean gameover;
     private int currentKey;
     private int currentKeyIndex;
+    private final static int MAX_WORD_LENGTH = 12;
     private String userWord;
     private boolean sameKey;
     private Timer keyTime;
@@ -33,11 +38,13 @@ public class GameView extends SurfaceView {
 
     private Bitmap keypadFrame;
 
-    public GameView(Context context){
+    public GameView(Context context, MainGame mainGame){
         super(context);
+        this.mainGame = mainGame;
 
         keypad = new ArrayList<>();
         words = new ArrayList<>();
+        userWordDisp = new ArrayList<>();
         gameLooper = new GameLooper(this);
 
         score = 0;
@@ -86,7 +93,7 @@ public class GameView extends SurfaceView {
                 keys.draw(canvas);
             }
 
-
+            drawWord(canvas);
         }
 
     }
@@ -177,6 +184,8 @@ public class GameView extends SurfaceView {
                     break;
                 }
             }
+            if(key != null){
+
 
             if(key.getNumber() == -2){
                 submitWord();
@@ -188,7 +197,7 @@ public class GameView extends SurfaceView {
                 sameKey = false;
                 currentKey = -1;
             }
-            else if(currentKey == key.getNumber() && sameKey){
+            else if(currentKey == key.getNumber() && sameKey && userWord.length() < MAX_WORD_LENGTH){
                 backSpace();
 
                 if(currentKeyIndex >= key.getMaxChars()-1)
@@ -212,7 +221,7 @@ public class GameView extends SurfaceView {
                     }
                 }, 1000);
             }
-            else{
+            else if(userWord.length() < MAX_WORD_LENGTH){
                 currentKeyIndex = 0;
                 currentKey = key.getNumber();
 
@@ -229,6 +238,7 @@ public class GameView extends SurfaceView {
                     }
                 }, 1000);
             }
+        }
         }
 
         return super.onTouchEvent(event);
@@ -250,5 +260,31 @@ public class GameView extends SurfaceView {
         Log.d("OUTPUT", userWord);
 
         userWord = "";
+    }
+
+    private void drawWord(Canvas canvas){
+        char[] letters = userWord.toLowerCase().toCharArray();
+        int posX = (int) ((float)getWidth() * .16);
+        int posY = (int) ((float)getHeight() * .59);
+
+        int width = (int) ((float) getWidth() * .06);
+        int height = (int) ((float) getHeight() * .05);
+
+        userWordDisp.clear();
+
+        synchronized (letters) {
+            for (int i = 0; i < letters.length; i++) {
+                userWordDisp.add(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), getResourceFromDrawable("letter_" + letters[i])), width, height, true));
+            }
+        }
+
+        for(int i = 0; i < userWordDisp.size(); i++)
+            canvas.drawBitmap(userWordDisp.get(i), posX + width * i, posY, null);
+    }
+
+    private int getResourceFromDrawable(String id){
+        String packageName = mainGame.getPackageName();
+        int resId = mainGame.getResources().getIdentifier(id, "drawable", packageName);
+        return resId;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.lanceviaje.sqlite_v1;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -84,8 +85,9 @@ public class MainGame extends AppCompatActivity {
             }
         });*/
 
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(new GameView(this));
+        setContentView(new GameView(this, this));
 
 
 
